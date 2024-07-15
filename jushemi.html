@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buenas noches mi amor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('fotito.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            opacity: 0;
+            animation: fadeIn 5s forwards, moveUp 5s forwards;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0 0;
+            opacity: 0;
+            animation: fadeIn 5s 2s forwards, moveUp 5s 2s forwards;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+            transform: rotate(45deg);
+            animation: floatUp 5s infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveUp {
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buenas noches mi amor</h1>
+        <p>Te quiero infinitamente</p>
+    </div>
+    <div class="hearts">
+        <!-- Corazones animados -->
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
